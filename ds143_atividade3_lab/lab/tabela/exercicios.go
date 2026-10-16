@@ -59,5 +59,28 @@ func (t *Tabela) redimensiona(m int) {
 // tabela.go para escrever essa condição sem tratar a volta no fim do vetor
 // como caso à parte.
 func (t *Tabela) Remove(k int) bool {
-	panic("TODO: implementar Remove")
+    i := t.hash(k)
+    for t.ocupada[i] && t.chaves[i] != k {
+        i = (i + 1) % t.m()
+    }
+    if !t.ocupada[i] {
+        return false
+    }
+
+    t.ocupada[i] = false
+    t.n--
+
+    j := (i + 1) % t.m()
+    for t.ocupada[j] {
+        h := t.hash(t.chaves[j])
+        if t.distancia(i, j) <= t.distancia(h, j) {
+            t.chaves[i] = t.chaves[j]
+            t.valores[i] = t.valores[j]
+            t.ocupada[i] = true
+            t.ocupada[j] = false
+            i = j
+        }
+        j = (j + 1) % t.m()
+    }
+    return true
 }
