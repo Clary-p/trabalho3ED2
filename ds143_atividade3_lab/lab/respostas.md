@@ -3,7 +3,7 @@
 Nome:
 `Clarissa Pietrangelo e Sabrina Dorigoni Pelentir`<br>
 GRR:
-`--- e 20255562`
+`20255551 e 20255562`
 
 Se a atividade foi feita em dupla, escreva aqui os dois nomes e os dois GRR. As
 duas pessoas enviam o mesmo `.zip` na UFPR Virtual.
