@@ -1,8 +1,9 @@
 # Atividade Avaliativa 3 - Respostas
 
 Nome:
-
+`Clarissa Pietrangelo e Sabrina Dorigoni Pelentir`<br>
 GRR:
+`--- e 20255562`
 
 Se a atividade foi feita em dupla, escreva aqui os dois nomes e os dois GRR. As
 duas pessoas enviam o mesmo `.zip` na UFPR Virtual.
@@ -35,6 +36,13 @@ com `misturar = true`. Volte para `false` antes de enviar.
 1. Na sua `Remove`, em que condição a chave da posição `j` desce para o buraco
    `i`? No teste `TestRemoveVoltaCircular`, por que o 1 fica na posição 1 e o
    10, que está depois dele, desce para a posição 0?
+
+```
+R: A chave em j desce para o buraco i se distancia(i, j) <= distancia(h, j), ou seja, se o buraco está no caminho da posição de
+origem h até j. No teste, o 1 está na posição de origem (h=1), então o buraco na 0 está antes do caminho dele e descer o deixaria
+inalcançável pela Busca. Já o 10 (h=10) passou pela 10, pela 0 e pela 1 até chegar na 2, então o buraco na 0 está no caminho dele
+e ele pode descer.
+```
 
 2. Com `misturar = false`, a linha da janela da `Tabela` fica centenas de vezes
    mais lenta que a do `map`. Quantas posições a sua `Remove` examina, mais ou
