@@ -10,22 +10,23 @@ package tabela
 // 10*n > 7*m.
 // Insere associa o valor v à chave k.
 func (t *Tabela) Insere(k, v int) {
-    p := t.hash(k)
-    for t.ocupada[p] {
-        if t.chaves[p] == k {
-            t.valores[p] = v
-            return
-        }
-        p = (p + 1) % t.m()
-    }
-    t.chaves[p] = k
-    t.valores[p] = v
-    t.ocupada[p] = true
-    t.n++
-    if 10*t.n > 7*t.m() {
-        t.redimensiona(proximoPrimo(2 * t.m()))
-    }
+	p := t.hash(k)
+	for t.ocupada[p] {
+		if t.chaves[p] == k {
+			t.valores[p] = v
+			return
+		}
+		p = (p + 1) % t.m()
+	}
+	t.chaves[p] = k
+	t.valores[p] = v
+	t.ocupada[p] = true
+	t.n++
+	if 10*t.n > 7*t.m() {
+		t.redimensiona(proximoPrimo(2 * t.m()))
+	}
 }
+
 // redimensiona troca o vetor por um de m posições e reinsere todos os pares.
 // A posição de cada chave muda, porque h(k) = k mod m depende de m.
 //
@@ -34,15 +35,15 @@ func (t *Tabela) Insere(k, v int) {
 // aula de tabelas de dispersão.
 // redimensiona cria uma tabela maior e reinsere todos os pares.
 func (t *Tabela) redimensiona(m int) {
-    nova := Nova(m)
-    // Percorre as posições da tabela antiga.
-    for p := 0; p < t.m(); p++ {
-        if t.ocupada[p] {
-            nova.Insere(t.chaves[p], t.valores[p])
-        }
-    }
-    // Substitui a tabela antiga pela nova.
-    *t = *nova
+	nova := Nova(m)
+	// Percorre as posições da tabela antiga.
+	for p := 0; p < t.m(); p++ {
+		if t.ocupada[p] {
+			nova.Insere(t.chaves[p], t.valores[p])
+		}
+	}
+	// Substitui a tabela antiga pela nova.
+	*t = *nova
 }
 
 // Remove tira a chave k da tabela e devolve true, ou devolve false se ela
@@ -59,28 +60,28 @@ func (t *Tabela) redimensiona(m int) {
 // tabela.go para escrever essa condição sem tratar a volta no fim do vetor
 // como caso à parte.
 func (t *Tabela) Remove(k int) bool {
-    i := t.hash(k)
-    for t.ocupada[i] && t.chaves[i] != k {
-        i = (i + 1) % t.m()
-    }
-    if !t.ocupada[i] {
-        return false
-    }
+	i := t.hash(k)
+	for t.ocupada[i] && t.chaves[i] != k {
+		i = (i + 1) % t.m()
+	}
+	if !t.ocupada[i] {
+		return false
+	}
 
-    t.ocupada[i] = false
-    t.n--
+	t.ocupada[i] = false
+	t.n--
 
-    j := (i + 1) % t.m()
-    for t.ocupada[j] {
-        h := t.hash(t.chaves[j])
-        if t.distancia(i, j) <= t.distancia(h, j) {
-            t.chaves[i] = t.chaves[j]
-            t.valores[i] = t.valores[j]
-            t.ocupada[i] = true
-            t.ocupada[j] = false
-            i = j
-        }
-        j = (j + 1) % t.m()
-    }
-    return true
+	j := (i + 1) % t.m()
+	for t.ocupada[j] {
+		h := t.hash(t.chaves[j])
+		if t.distancia(i, j) <= t.distancia(h, j) {
+			t.chaves[i] = t.chaves[j]
+			t.valores[i] = t.valores[j]
+			t.ocupada[i] = true
+			t.ocupada[j] = false
+			i = j
+		}
+		j = (j + 1) % t.m()
+	}
+	return true
 }
