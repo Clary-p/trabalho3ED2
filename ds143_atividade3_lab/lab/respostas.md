@@ -59,5 +59,3 @@ influencia a nota.
 Ela instruiu que eu não estava movendo o buraco depois de descer uma chave (faltava `i = j`) e também que minha condição não tratava a volta no fim do vetor. Substituí a condição por uma comparação com distancia, e os testes passaram. Além disso, eu estava usando `p := t.hash(k)` por me basear no Insere, mas ela sugeriu ser direto `i := t.hash(k)`, já que o i é a posição que vira o buraco e é usado no resto da função.
 
 > Fiz perguntas para entender melhor o conteúdo, como explicações de termos (benchmark, ns/op, janela deslizante, agrupamento primário na sondagem linear, condição de descida, etc.) com base no contexto dos códigos já existentes e como eles funcionam.
-
-> Usei para conferir e melhorar a redação de algumas frases das minhas respostas. O conteúdo e o raciocínio são meus.
